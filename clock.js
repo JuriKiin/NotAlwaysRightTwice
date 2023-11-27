@@ -20,6 +20,13 @@ let getTime = (buffer) => {
     time.setSeconds(time.getSeconds() + Math.floor(60/buffer));
     if (time.toLocaleString == Date.now) { time.setMinutes(time.getMinutes + Math.floor(60 / buffer)) }
 
+    let restrictedDates = [new Date("2023-11-05"), new Date("2023-03-12")];
+    restrictedDates.forEach((d) => {
+        if (d.getMonth() == time.getMonth() && d.getDate() == time.getDate()) {
+            time.setHours(time.getHours + Math.floor(8 / buffer) + 2)
+        }
+    })
+
     displayTime(time);
 }
 
